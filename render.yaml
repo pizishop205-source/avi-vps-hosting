@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: avi-vps-hosting
+    runtime: python
+    repo: https://github.com/pizishop205-source/avi-vps-hosting
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
