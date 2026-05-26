@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>AVI VPS HOSTING | Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#070b16;
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    position:relative;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#1b46ff33,transparent 70%);
+    top:-200px;
+    left:-150px;
+    z-index:0;
+}
+
+body::after{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#2458ff22,transparent 70%);
+    bottom:-200px;
+    right:-150px;
+    z-index:0;
+}
+
+.login-wrapper{
+    width:100%;
+    max-width:470px;
+    background:#0b1020;
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:30px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    position:relative;
+    z-index:2;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.02), 0 25px 60px rgba(0,0,0,0.7);
+    max-height:95vh;
+}
+
+.login-wrapper::-webkit-scrollbar{
+    width:5px;
+}
+.login-wrapper::-webkit-scrollbar-track{
+    background:#1a1f3a;
+    border-radius:10px;
+}
+.login-wrapper::-webkit-scrollbar-thumb{
+    background:#3f7cff;
+    border-radius:10px;
+}
+
+.login-header{
+    padding:45px 35px 30px;
+    text-align:center;
+    background:linear-gradient(to bottom,#0d1327,#0a0f1d);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.brand-icon{
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:28px;
+    background:linear-gradient(145deg,#4f86ff,#255dff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 30px rgba(37,93,255,0.35), inset 0 1px 2px rgba(255,255,255,0.2);
+    margin-bottom:25px;
+    font-size:38px;
+}
+
+.brand-icon span{
+    color:white;
+}
+
+.login-header h1{
+    font-size:2.2rem;
+    font-weight:800;
+    margin-bottom:8px;
+    letter-spacing:0.5px;
+    color:white;
+}
+
+.login-header h1 span{
+    color:#3f7cff;
+}
+
+.login-header p{
+    color:#8d97bd;
+    font-size:0.95rem;
+}
+
+.login-body{
+    padding:35px;
+}
+
+.error-badge{
+    background:rgba(255,70,70,0.12);
+    border:1px solid rgba(255,70,70,0.25);
+    color:#ffb4b4;
+    padding:14px;
+    border-radius:14px;
+    font-size:0.85rem;
+    margin-bottom:20px;
+}
+
+.input-field{
+    margin-bottom:22px;
+}
+
+.input-field label{
+    display:block;
+    color:#b4bddf;
+    margin-bottom:10px;
+    font-size:0.9rem;
+    font-weight:600;
+}
+
+.input-field input{
+    width:100%;
+    background:#050814;
+    border:1.5px solid #1d2746;
+    height:58px;
+    border-radius:16px;
+    padding:0 18px;
+    color:white;
+    font-size:0.95rem;
+    outline:none;
+    transition:0.2s;
+}
+
+.input-field input:focus{
+    border-color:#3f7cff;
+    box-shadow:0 0 0 4px rgba(63,124,255,0.15);
+}
+
+.input-field input::placeholder{
+    color:#53608f;
+}
+
+.login-btn{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:16px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#2f6cff,#4b8cff);
+    color:white;
+    font-size:1rem;
+    font-weight:700;
+    margin-top:8px;
+    transition:0.25s;
+    box-shadow:0 10px 25px rgba(47,108,255,0.3);
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 35px rgba(47,108,255,0.4);
+}
+
+.login-footer{
+    padding:22px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.05);
+    background:#090d19;
+}
+
+.secure-text{
+    color:#65709e;
+    font-size:0.8rem;
+    letter-spacing:0.5px;
+}
+
+/* নতুন বাটন সেকশন - টেলিগ্রাম আইকন সহ */
+.telegram-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-top:20px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.telegram-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg,#1a8cff,#0066cc);
+    padding:12px 24px;
+    border-radius:40px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    font-size:0.9rem;
+    transition:0.2s;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.telegram-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(26,140,255,0.3);
+}
+
+.telegram-icon{
+    width:24px;
+    height:24px;
+    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.14-.05-.2-.07-.06-.18-.04-.26-.02-.11.02-1.86 1.18-5.26 3.48-.5.34-.95.51-1.36.5-.45-.01-1.31-.25-1.95-.46-.78-.25-1.4-.38-1.35-.81.03-.22.34-.45.94-.68 3.68-1.6 6.14-2.66 7.38-3.17 3.52-1.45 4.25-1.7 4.73-1.71.1 0 .34.02.49.15.13.11.17.27.19.44-.01.08-.01.16-.02.24z"/></svg>') no-repeat center;
+    background-size:contain;
+}
+
+@media(max-width:500px){
+    .login-header{
+        padding:35px 25px 25px;
+    }
+    .login-body{
+        padding:25px;
+    }
+    .brand-icon{
+        width:75px;
+        height:75px;
+        border-radius:24px;
+        font-size:30px;
+    }
+    .login-header h1{
+        font-size:1.7rem;
+    }
+    .login-wrapper{
+        max-height:98vh;
+    }
+    .telegram-buttons{
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .telegram-btn{
+        justify-content:center;
+    }
+}
+
+@media(max-height:650px){
+    .login-header{
+        padding:25px 35px 20px;
+    }
+    .login-body{
+        padding:25px;
+    }
+    .brand-icon{
+        width:65px;
+        height:65px;
+        font-size:28px;
+        margin-bottom:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <div class="login-header">
+        <div class="brand-icon">
+            <span>☁</span>
+        </div>
+        <h1>AVI VPS <span>HOSTING</span></h1>
+        <p>Premium Hosting Free</p>
+    </div>
+
+    <div class="login-body">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="error-badge">
+                    ⚠️ {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/login">
+            <div class="input-field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required autofocus>
+            </div>
+            <div class="input-field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+        </form>
+
+        <!-- টেলিগ্রাম বাটন সেকশন -->
+        <div class="telegram-buttons">
+            <a href="{{ contact_link }}" class="telegram-btn" target="_blank">
+                <div class="telegram-icon"></div>
+                Contact Admin
+            </a>
+            <a href="{{ free_server_link }}" class="telegram-btn" target="_blank">
+                <div class="telegram-icon"></div>
+                Get Free Server
+            </a>
+        </div>
+
+    </div>
+
+    <div class="login-footer">
+        <div class="secure-text">
+            🔒 Secure Access Only
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

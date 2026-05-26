@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVI HOSTING  -  ADMIN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#070b16;
+    font-family:'Inter',sans-serif;
+    color:white;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{
+    width:8px;
+}
+::-webkit-scrollbar-track{
+    background:#0b1020;
+}
+::-webkit-scrollbar-thumb{
+    background:#2f6cff;
+    border-radius:20px;
+}
+
+/* LOGIN PAGE */
+.login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:450px;
+    background:#0d1323;
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,0.6);
+}
+
+.login-header{
+    padding:40px 30px;
+    text-align:center;
+    background:linear-gradient(to bottom,#10182d,#0c1120);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo-icon{
+    width:90px;
+    height:90px;
+    border-radius:28px;
+    background:linear-gradient(145deg,#4f86ff,#2358ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    font-size:38px;
+    margin-bottom:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+.login-header h1{
+    font-size:2rem;
+    font-weight:800;
+}
+
+.login-header h1 span{
+    color:#2f6cff;
+}
+
+.login-header p{
+    color:#8f99c7;
+    margin-top:6px;
+}
+
+.login-body{
+    padding:30px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    color:#aab4dd;
+    font-weight:600;
+}
+
+.input-group input{
+    width:100%;
+    height:58px;
+    background:#050814;
+    border:1px solid #1f2847;
+    border-radius:16px;
+    padding:0 18px;
+    color:white;
+    outline:none;
+    font-size:0.95rem;
+}
+
+.input-group input:focus{
+    border-color:#2f6cff;
+    box-shadow:0 0 0 4px rgba(47,108,255,0.15);
+}
+
+.login-btn{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(145deg,#2f6cff,#4a8dff);
+    color:white;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+.login-footer{
+    text-align:center;
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,0.05);
+    color:#65709e;
+    font-size:0.85rem;
+}
+
+/* DASHBOARD */
+.dashboard{
+    display:none;
+}
+
+/* SIDEBAR */
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:280px;
+    background:#0c1120;
+    border-right:1px solid rgba(255,255,255,0.05);
+    padding:25px;
+    position:fixed;
+    height:100vh;
+    overflow-y:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:40px;
+}
+
+.logo-box{
+    width:65px;
+    height:65px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#4f86ff,#2358ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.logo h1{
+    font-size:1.6rem;
+    font-weight:800;
+}
+
+.logo h1 span{
+    color:#2f6cff;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#b4bddf;
+    background:#111728;
+    padding:16px 18px;
+    border-radius:16px;
+    font-weight:600;
+    transition:0.2s;
+    cursor:pointer;
+}
+
+.menu a:hover{
+    background:#2f6cff;
+    color:white;
+}
+
+/* MAIN */
+.main{
+    margin-left:280px;
+    width:100%;
+    padding:25px;
+}
+
+/* TOPBAR */
+.topbar{
+    background:#0d1323;
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:22px;
+    padding:20px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.topbar h2{
+    font-size:2rem;
+    font-weight:800;
+}
+
+.topbar p{
+    color:#98a2cb;
+    margin-top:4px;
+}
+
+.admin-btn{
+    background:#ff3d3d;
+    color:white;
+    border:none;
+    padding:14px 22px;
+    border-radius:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#111728;
+    border-radius:24px;
+    padding:28px;
+    border-left:5px solid #2f6cff;
+}
+
+.card h3{
+    color:#aab4dd;
+    font-size:0.9rem;
+    margin-bottom:15px;
+    text-transform:uppercase;
+}
+
+.card p{
+    font-size:2rem;
+    font-weight:800;
+}
+
+.blue{color:#4d8fff;}
+.green{color:#25d366;}
+.yellow{color:#ffd43b;}
+.red{color:#ff4d4d;}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+}
+
+/* PANEL */
+.panel{
+    background:#0d1323;
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:24px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.panel-title{
+    font-size:1.3rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* BUTTONS */
+.btn{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:16px;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.primary{
+    background:linear-gradient(145deg,#2f6cff,#4a8dff);
+    color:white;
+}
+
+.warning{
+    background:#ff9f1a;
+    color:white;
+}
+
+.danger{
+    background:#ff3d3d;
+    color:white;
+}
+
+/* USERS */
+.user-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    max-height:500px;
+    overflow-y:auto;
+}
+
+.user{
+    background:#111728;
+    padding:18px;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.user-info h4{
+    margin-bottom:6px;
+}
+
+.user-info p{
+    color:#8f99c7;
+    font-size:0.85rem;
+}
+
+.user-actions{
+    display:flex;
+    gap:10px;
+}
+
+.small-btn{
+    border:none;
+    padding:10px 14px;
+    border-radius:12px;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.ban{
+    background:#ff3d3d;
+}
+
+.unban{
+    background:#20bf55;
+}
+
+.extend{
+    background:#2f6cff;
+}
+
+/* FILES */
+.files{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.file{
+    background:#111728;
+    padding:16px;
+    border-radius:16px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.file span{
+    color:#8e98c4;
+}
+
+/* SETTINGS FORM */
+.settings-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+/* TELEGRAM BUTTONS FOOTER */
+.telegram-footer{
+    margin-top:25px;
+    text-align:center;
+}
+
+.telegram-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.telegram-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 24px;
+    border-radius:40px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.2s;
+}
+
+.telegram-btn.contact{
+    background:#1a8cff;
+}
+
+.telegram-btn.free{
+    background:#20bf55;
+}
+
+.telegram-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* MODAL DIALOG */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-content{
+    background:#0d1323;
+    border:1px solid #2f6cff;
+    border-radius:24px;
+    padding:30px;
+    max-width:500px;
+    width:90%;
+    position:relative;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-header h3{
+    color:#2f6cff;
+    font-size:1.5rem;
+}
+
+.close-modal{
+    background:none;
+    border:none;
+    color:#8f99c7;
+    font-size:1.8rem;
+    cursor:pointer;
+}
+
+.modal-body{
+    margin-bottom:20px;
+}
+
+.modal-footer{
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+}
+
+/* SERVER NOTIFICATION */
+.server-notification{
+    background:#0a0e1a;
+    border-radius:16px;
+    margin-bottom:20px;
+    overflow:hidden;
+    border:1px solid #2f6cff;
+    box-shadow:0 0 15px rgba(47,108,255,0.2);
+}
+
+.notification-header{
+    background:linear-gradient(135deg,#2f6cff,#4a8dff);
+    padding:8px 15px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.close-notif{
+    background:rgba(255,255,255,0.2);
+    border:none;
+    color:white;
+    font-size:1.2rem;
+    cursor:pointer;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.close-notif:hover{
+    background:rgba(255,255,255,0.3);
+}
+
+.notification-content{
+    padding:20px;
+    font-family:'Courier New', monospace;
+    font-size:0.85rem;
+}
+
+.ascii-box{
+    background:#0c1020;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.ascii-text{
+    color:#4d8fff;
+    font-weight:bold;
+    white-space:pre;
+    line-height:1.4;
+}
+
+.detail-line{
+    padding:8px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px dashed #1f2847;
+}
+
+.detail-line:last-child{
+    border-bottom:none;
+}
+
+.detail-label{
+    color:#8f99c7;
+}
+
+.detail-value{
+    color:#25d366;
+    font-weight:500;
+    word-break:break-all;
+}
+
+.copy-single-btn{
+    background:#2f6cff;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    width:100%;
+    margin-top:15px;
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;
+}
+
+.copy-single-btn:hover{
+    background:#1a4fcc;
+}
+
+/* TOAST */
+.toast-message{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#20bf55;
+    color:white;
+    padding:12px 20px;
+    border-radius:12px;
+    font-size:0.85rem;
+    z-index:9999;
+    font-weight:600;
+    animation:slideIn 0.3s ease;
+}
+
+@keyframes slideIn{
+    from{
+        transform:translateX(100%);
+        opacity:0;
+    }
+    to{
+        transform:translateX(0);
+        opacity:1;
+    }
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:768px){
+    .wrapper{
+        flex-direction:column;
+    }
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+    .main{
+        margin-left:0;
+    }
+    .stats{
+        grid-template-columns:1fr;
+    }
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .detail-line{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="login-page" id="loginPage">
+    <div class="login-box">
+        <div class="login-header">
+            <div class="logo-icon">☁</div>
+            <h1>AVI <span>ADMIN</span></h1>
+            <p>Secure Hosting Control Panel</p>
+        </div>
+        <div class="login-body">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter Username">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter Password">
+            </div>
+            <button class="login-btn" onclick="loginAdmin()">
+                Login Admin Panel
+            </button>
+        </div>
+        <div class="login-footer">
+            🔒 AVI HOSTING Secure Access
+        </div>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<div class="wrapper">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo-box">☁</div>
+            <h1>AVI <span>ADMIN</span></h1>
+        </div>
+        <div class="menu">
+            <a onclick="showDashboard()">🏠 Dashboard</a>
+            <a onclick="showUsers()">👥 Users</a>
+            <a onclick="showFiles()">📁 Uploaded Files</a>
+            <a onclick="showSettings()">⚙️ Settings</a>
+            <a onclick="logoutAdmin()">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main" id="mainContent"></div>
+
+</div>
+
+</div>
+
+<!-- মেইনটেন্যান্স মোডাল -->
+<div id="maintenanceModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>🔧 Maintenance Mode</h3>
+            <button class="close-modal" onclick="closeMaintenanceModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p id="maintenanceMessage">Are you sure you want to enable maintenance mode?</p>
+            <p style="color:#8f99c7; margin-top:10px; font-size:0.85rem;">When maintenance mode is ON, all users will be unable to use the panel.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="small-btn" style="background:#2f6cff;" onclick="confirmMaintenance()">Confirm</button>
+            <button class="small-btn" style="background:#ff3d3d;" onclick="closeMaintenanceModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============= ডাটাবেস (localStorage) =============
+let servers = JSON.parse(localStorage.getItem('servers')) || [];
+let maintenanceMode = false;
+
+// ============= লগইন ফাংশন =============
+function loginAdmin(){
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if(username === "admin" && password === "admin123"){
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        showDashboard();
+    }else{
+        alert("Invalid Admin Username or Password");
+    }
+}
+
+function logoutAdmin(){
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginPage").style.display = "flex";
+}
+
+// ============= টোস্ট মেসেজ =============
+function showToast(message, isError = false){
+    let toast = document.createElement('div');
+    toast.className = 'toast-message';
+    toast.style.background = isError ? '#ff3d3d' : '#20bf55';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// ============= কপি ফাংশন =============
+async function copyAllDetails(server){
+    let details = `╔══════════════════════╗
+  ✅ Panel Created!
+╚══════════════════════╝
+
+🌐 URL: https://avi-vps-hosting.com/
+👤 Username: ${server.username}
+🔑 Pass: ${server.password}
+🆔 Server ID: ${server.id}
+🖥 Type: ${server.type}
+💾 RAM: ${server.ram} | 💿 Disk: ${server.disk}
+⏰ Validity: 3 days
+📅 Expiry: ${server.expiry}
+
+🔐 Login with details above!`;
+    
+    try{
+        await navigator.clipboard.writeText(details);
+        showToast(`✅ All server details copied!`);
+    }catch(err){
+        let textarea = document.createElement('textarea');
+        textarea.value = details;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(`✅ All server details copied!`);
+    }
+}
+
+// ============= স্ট্যাটাস আপডেট =============
+function updateStats(){
+    let totalUsers = servers.length;
+    let runningServers = servers.filter(s => s.status !== 'Expired' && s.status !== 'Banned').length;
+    let expiredServers = servers.filter(s => s.status === 'Expired').length;
+    let bannedUsers = servers.filter(s => s.status === 'Banned').length;
+    
+    let totalUsersEl = document.getElementById('totalUsers');
+    let runningServersEl = document.getElementById('runningServers');
+    let expiredServersEl = document.getElementById('expiredServers');
+    let bannedUsersEl = document.getElementById('bannedUsers');
+    
+    if(totalUsersEl) totalUsersEl.innerHTML = totalUsers;
+    if(runningServersEl) runningServersEl.innerHTML = runningServers;
+    if(expiredServersEl) expiredServersEl.innerHTML = expiredServers;
+    if(bannedUsersEl) bannedUsersEl.innerHTML = bannedUsers;
+}
+
+// ============= র্যান্ডম জেনারেটর =============
+function generateServerId(){
+    return Math.random().toString(36).substring(2, 10).toUpperCase();
+}
+
+function getExpiryDate(days=3){
+    let date = new Date();
+    date.setDate(date.getDate() + days);
+    return date.toISOString().split('T')[0];
+}
+
+// ============= সার্ভার ক্রিয়েট (রিয়েল) =============
+function createServer(){
+    let username = document.getElementById("serverUsername").value;
+    let password = document.getElementById("serverPassword").value;
+    let expireDate = document.getElementById("expireDate").value;
+    
+    if(!username || !password){
+        showToast("Please fill all fields!", true);
+        return;
+    }
+    
+    let serverId = generateServerId();
+    let expiry = expireDate || getExpiryDate(3);
+    
+    let newServer = {
+        id: serverId,
+        username: username,
+        password: password,
+        type: "Python",
+        ram: "1GB",
+        disk: "1GB",
+        expiry: expiry,
+        status: "Running",
+        createdAt: new Date().toISOString()
+    };
+    
+    servers.push(newServer);
+    localStorage.setItem('servers', JSON.stringify(servers));
+    
+    showServerCreatedNotification(newServer);
+    
+    document.getElementById("serverUsername").value = "";
+    document.getElementById("serverPassword").value = "";
+    document.getElementById("expireDate").value = "";
+    
+    updateUsersList();
+    updateStats();
+}
+
+function showServerCreatedNotification(server){
+    let notificationBox = document.getElementById('notificationArea');
+    if(notificationBox){
+        let asciiArt = `╔══════════════════════╗
+  ✅ Panel Created!
+╚══════════════════════╝`;
+        
+        let notificationHtml = `
+            <div class="server-notification" id="serverNotif">
+                <div class="notification-header">
+                    <button class="close-notif" onclick="document.getElementById('serverNotif').remove()">✕</button>
+                </div>
+                <div class="notification-content">
+                    <div class="ascii-box">
+                        <pre class="ascii-text">${asciiArt}</pre>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">🌐 URL:</span>
+                        <span class="detail-value">https://avi-vps-hosting.com/</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">👤 Username:</span>
+                        <span class="detail-value">${server.username}</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">🔑 Pass:</span>
+                        <span class="detail-value">${server.password}</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">🆔 Server ID:</span>
+                        <span class="detail-value">${server.id}</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">🖥 Type:</span>
+                        <span class="detail-value">${server.type}</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">💾 RAM/Disk:</span>
+                        <span class="detail-value">${server.ram} / ${server.disk}</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">⏰ Validity:</span>
+                        <span class="detail-value">3 days</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">📅 Expiry:</span>
+                        <span class="detail-value">${server.expiry}</span>
+                    </div>
+                    <div class="detail-line">
+                        <span class="detail-label">🔐 Login:</span>
+                        <span class="detail-value">with details above!</span>
+                    </div>
+                    <button class="copy-single-btn" onclick="copyAllDetails({
+                        username: '${server.username}',
+                        password: '${server.password}',
+                        id: '${server.id}',
+                        type: '${server.type}',
+                        ram: '${server.ram}',
+                        disk: '${server.disk}',
+                        expiry: '${server.expiry}'
+                    })">📋 Copy All Details</button>
+                </div>
+            </div>
+        `;
+        notificationBox.innerHTML = notificationHtml;
+        notificationBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// ============= ইউজার লিস্ট =============
+function updateUsersList(){
+    let container = document.getElementById('usersList');
+    if(!container) return;
+    
+    if(servers.length === 0){
+        container.innerHTML = '<div class="user"><div class="user-info"><h4>No servers created yet</h4><p>Create your first server above</p></div></div>';
+        return;
+    }
+    
+    let html = '';
+    servers.forEach((server, index) => {
+        let statusColor = server.status === 'Running' ? '#25d366' : (server.status === 'Expired' ? '#ffd43b' : '#ff4d4d');
+        let banText = server.status === 'Banned' ? 'Unban' : 'Ban';
+        let banClass = server.status === 'Banned' ? 'unban' : 'ban';
+        
+        html += `
+            <div class="user">
+                <div class="user-info">
+                    <h4>${server.username}</h4>
+                    <p>Server ID: ${server.id} • Password: ${server.password} • Status: <span style="color:${statusColor}">${server.status}</span> • Expires: ${server.expiry}</p>
+                </div>
+                <div class="user-actions">
+                    <button class="small-btn extend" onclick="extendServer(${index})">Extend</button>
+                    <button class="small-btn ${banClass}" onclick="toggleBan(${index})">${banText}</button>
+                    <button class="small-btn" style="background:#ff3d3d;" onclick="deleteServer(${index})">Delete</button>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+    updateStats();
+}
+
+function extendServer(index){
+    let newExpiry = new Date();
+    newExpiry.setDate(newExpiry.getDate() + 7);
+    servers[index].expiry = newExpiry.toISOString().split('T')[0];
+    servers[index].status = 'Running';
+    localStorage.setItem('servers', JSON.stringify(servers));
+    updateUsersList();
+    showToast(`✅ Extended ${servers[index].username} for 7 days!`);
+}
+
+function toggleBan(index){
+    if(servers[index].status === 'Banned'){
+        servers[index].status = 'Running';
+        showToast(`✅ ${servers[index].username} has been unbanned!`);
+    } else {
+        servers[index].status = 'Banned';
+        showToast(`⚠️ ${servers[index].username} has been banned!`);
+    }
+    localStorage.setItem('servers', JSON.stringify(servers));
+    updateUsersList();
+}
+
+function deleteServer(index){
+    let username = servers[index].username;
+    if(confirm(`Delete server "${username}"? This action cannot be undone!`)){
+        servers.splice(index, 1);
+        localStorage.setItem('servers', JSON.stringify(servers));
+        updateUsersList();
+        showToast(`🗑 Deleted ${username} successfully!`);
+    }
+}
+
+// ============= মেইনটেন্যান্স ফাংশন =============
+function openMaintenanceModal(){
+    document.getElementById('maintenanceModal').style.display = 'flex';
+}
+
+function closeMaintenanceModal(){
+    document.getElementById('maintenanceModal').style.display = 'none';
+}
+
+function confirmMaintenance(){
+    maintenanceMode = !maintenanceMode;
+    let btn = document.getElementById('maintenanceBtn');
+    let statusText = document.getElementById('maintenanceStatus');
+    
+    if(maintenanceMode){
+        if(btn) btn.innerHTML = "🔧 Maintenance ON";
+        if(btn) btn.style.background = "#20bf55";
+        if(statusText) statusText.innerHTML = "ON";
+        showToast("🔧 Maintenance mode ENABLED. Users cannot access panel.");
+    } else {
+        if(btn) btn.innerHTML = "⚙️ Maintenance OFF";
+        if(btn) btn.style.background = "#ff3d3d";
+        if(statusText) statusText.innerHTML = "OFF";
+        showToast("✅ Maintenance mode DISABLED. Panel is live.");
+    }
+    closeMaintenanceModal();
+}
+
+function disableAllServers(){
+    if(confirm("⚠️ WARNING: This will disable ALL servers! Continue?")){
+        servers.forEach(server => {
+            server.status = 'Expired';
+        });
+        localStorage.setItem('servers', JSON.stringify(servers));
+        updateUsersList();
+        showToast("⚠️ All servers have been disabled!");
+    }
+}
+
+// ============= ফাইল ম্যানেজার =============
+function updateFilesList(){
+    let container = document.getElementById('filesList');
+    if(!container) return;
+    
+    let demoFiles = [
+        {name: 'app.py', size: '2MB'},
+        {name: 'database.sql', size: '4MB'},
+        {name: 'server.zip', size: '15MB'},
+        {name: 'requirements.txt', size: '1KB'},
+        {name: 'bot.py', size: '8KB'}
+    ];
+    
+    let html = '';
+    demoFiles.forEach(file => {
+        html += `<div class="file"><div>${file.name}</div><span>${file.size}</span></div>`;
+    });
+    container.innerHTML = html;
+}
+
+// ============= সেটিংস =============
+function updateLinks(){
+    let contactLink = document.getElementById('contactLink').value;
+    let freeServerLink = document.getElementById('freeServerLink').value;
+    
+    // লোকাল স্টোরেজে সেভ
+    localStorage.setItem('contactLink', contactLink);
+    localStorage.setItem('freeServerLink', freeServerLink);
+    
+    showToast('✅ Links saved locally! In production, backend will save these.');
+}
+
+function loadSavedLinks(){
+    let contactLink = localStorage.getItem('contactLink');
+    let freeServerLink = localStorage.getItem('freeServerLink');
+    
+    if(contactLink) document.getElementById('contactLink').value = contactLink;
+    if(freeServerLink) document.getElementById('freeServerLink').value = freeServerLink;
+}
+
+// ============= ভিউ =============
+function showDashboard(){
+    let mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML = `
+        <div class="topbar">
+            <div>
+                <h2>AVI HOSTING ADMIN PANEL</h2>
+                <p>Welcome Back, Admin</p>
+            </div>
+            <button class="admin-btn" id="maintenanceBtn" onclick="openMaintenanceModal()">⚙️ Maintenance OFF</button>
+        </div>
+
+        <div class="stats">
+            <div class="card"><h3>Total Users</h3><p class="blue" id="totalUsers">0</p></div>
+            <div class="card"><h3>Running Servers</h3><p class="green" id="runningServers">0</p></div>
+            <div class="card"><h3>Expired Servers</h3><p class="yellow" id="expiredServers">0</p></div>
+            <div class="card"><h3>Banned Users</h3><p class="red" id="bannedUsers">0</p></div>
+        </div>
+
+        <div id="notificationArea"></div>
+
+        <div class="grid">
+            <div>
+                <div class="panel">
+                    <div class="panel-title">Create New Server</div>
+                    <div class="input-group">
+                        <label>Server Username</label>
+                        <input type="text" id="serverUsername" placeholder="Enter Username">
+                    </div>
+                    <div class="input-group">
+                        <label>Server Password</label>
+                        <input type="password" id="serverPassword" placeholder="Enter Password">
+                    </div>
+                    <div class="input-group">
+                        <label>Expire Date</label>
+                        <input type="date" id="expireDate">
+                    </div>
+                    <button class="btn primary" onclick="createServer()">Create Server</button>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">All Users Status</div>
+                    <div class="user-list" id="usersList"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="panel">
+                    <div class="panel-title">Server Controls</div>
+                    <button class="btn warning" onclick="openMaintenanceModal()">Enable Maintenance</button>
+                    <button class="btn danger" onclick="disableAllServers()">Disable All Servers</button>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">Uploaded Files</div>
+                    <div class="files" id="filesList"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="telegram-footer">
+            <div class="telegram-buttons">
+                <a href="${localStorage.getItem('contactLink') || 'https://t.me/avihosting'}" class="telegram-btn contact" target="_blank">📱 Contact Admin</a>
+                <a href="${localStorage.getItem('freeServerLink') || 'https://t.me/avihosting_bot'}" class="telegram-btn free" target="_blank">🎁 Get Free Server</a>
+            </div>
+        </div>
+    `;
+    
+    updateUsersList();
+    updateFilesList();
+    updateStats();
+}
+
+function showUsers(){
+    let mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML = `
+        <div class="topbar">
+            <div>
+                <h2>User Management</h2>
+                <p>Manage all VPS users</p>
+            </div>
+            <button class="admin-btn" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+        <div class="panel">
+            <div class="panel-title">All Users (${servers.length})</div>
+            <div class="user-list" id="usersListFull"></div>
+        </div>
+    `;
+    
+    let container = document.getElementById('usersListFull');
+    if(servers.length === 0){
+        container.innerHTML = '<div class="user"><div class="user-info"><h4>No users created yet</h4><p>Go to Dashboard to create servers</p></div></div>';
+        return;
+    }
+    
+    let html = '';
+    servers.forEach((server, index) => {
+        let statusColor = server.status === 'Running' ? '#25d366' : (server.status === 'Expired' ? '#ffd43b' : '#ff4d4d');
+        html += `
+            <div class="user">
+                <div class="user-info">
+                    <h4>${server.username}</h4>
+                    <p>Server ID: ${server.id} • Password: ${server.password} • Type: ${server.type} • RAM/Disk: ${server.ram}/${server.disk} • Status: <span style="color:${statusColor}">${server.status}</span> • Expires: ${server.expiry}</p>
+                </div>
+                <div class="user-actions">
+                    <button class="small-btn extend" onclick="extendServer(${index});showUsers();">Extend</button>
+                    <button class="small-btn ban" onclick="toggleBan(${index});showUsers();">Ban</button>
+                    <button class="small-btn" style="background:#ff3d3d;" onclick="deleteServer(${index});showUsers();">Delete</button>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+function showFiles(){
+    let mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML = `
+        <div class="topbar">
+            <div>
+                <h2>File Manager</h2>
+                <p>Manage uploaded files</p>
+            </div>
+            <button class="admin-btn" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+        <div class="panel">
+            <div class="panel-title">Uploaded Files</div>
+            <div class="files" id="filesListFull"></div>
+        </div>
+        <div class="panel">
+            <div class="panel-title">Upload New File</div>
+            <div class="input-group">
+                <label>Select File</label>
+                <input type="file" id="newFileUpload" style="background:#050814; color:white; border:1px solid #1f2847; border-radius:16px; padding:15px;">
+            </div>
+            <button class="btn primary" onclick="uploadDemoFile()">Upload File</button>
+        </div>
+    `;
+    
+    let demoFiles = [
+        {name: 'app.py', size: '2MB'},
+        {name: 'database.sql', size: '4MB'},
+        {name: 'server.zip', size: '15MB'},
+        {name: 'requirements.txt', size: '1KB'},
+        {name: 'bot.py', size: '8KB'}
+    ];
+    
+    let html = '';
+    demoFiles.forEach(file => {
+        html += `<div class="file"><div>${file.name}</div><span>${file.size}</span></div>`;
+    });
+    document.getElementById('filesListFull').innerHTML = html;
+}
+
+function showSettings(){
+    let mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML = `
+        <div class="topbar">
+            <div>
+                <h2>Settings</h2>
+                <p>Configure Telegram links</p>
+            </div>
+            <button class="admin-btn" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+        <div class="panel">
+            <div class="panel-title">⚙️ Telegram Links Settings</div>
+            <div class="settings-form">
+                <div class="input-group">
+                    <label>📱 Contact Admin Link</label>
+                    <input type="text" id="contactLink" placeholder="https://t.me/yourusername">
+                </div>
+                <div class="input-group">
+                    <label>🎁 Get Free Server Link</label>
+                    <input type="text" id="freeServerLink" placeholder="https://t.me/yourbot">
+                </div>
+                <button class="btn primary" onclick="updateLinks()">💾 Save Links</button>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-title">📊 Current Stats</div>
+            <div class="settings-form">
+                <div class="detail-line">
+                    <span class="detail-label">Total Servers:</span>
+                    <span class="detail-value">${servers.length}</span>
+                </div>
+                <div class="detail-line">
+                    <span class="detail-label">Maintenance Mode:</span>
+                    <span class="detail-value" id="maintenanceStatus">${maintenanceMode ? 'ON' : 'OFF'}</span>
+                </div>
+            </div>
+        </div>
+        <div class="telegram-footer">
+            <div class="telegram-buttons">
+                <a href="${localStorage.getItem('contactLink') || 'https://t.me/avihosting'}" class="telegram-btn contact" target="_blank">📱 Contact Admin</a>
+                <a href="${localStorage.getItem('freeServerLink') || 'https://t.me/avihosting_bot'}" class="telegram-btn free" target="_blank">🎁 Get Free Server</a>
+            </div>
+        </div>
+    `;
+    loadSavedLinks();
+    document.getElementById('maintenanceStatus').innerHTML = maintenanceMode ? 'ON (🔧)' : 'OFF (✅)';
+}
+
+function uploadDemoFile(){
+    let fileInput = document.getElementById('newFileUpload');
+    if(fileInput && fileInput.files[0]){
+        showToast(`📤 Uploaded: ${fileInput.files[0].name}`);
+        fileInput.value = '';
+    } else {
+        showToast("Please select a file first", true);
+    }
+}
+
+// ইনিশিয়ালাইজ
+loadSavedLinks();
+</script>
+</body>
+</html>
