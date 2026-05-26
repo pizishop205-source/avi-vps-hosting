@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AVI HOSTING ADMIN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#070b16;
+
+    font-family:'Inter',sans-serif;
+
+    color:white;
+
+    overflow-y:auto;
+}
+
+/* LOGIN PAGE */
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+}
+
+.login-box{
+
+    width:100%;
+
+    max-width:450px;
+
+    background:#0d1323;
+
+    border-radius:28px;
+
+    padding:35px;
+
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+.logo-icon{
+
+    width:90px;
+    height:90px;
+
+    border-radius:28px;
+
+    background:linear-gradient(145deg,#4f86ff,#2358ff);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:auto;
+
+    font-size:35px;
+
+    margin-bottom:20px;
+}
+
+.logo h1{
+
+    font-size:2rem;
+
+    font-weight:800;
+}
+
+.logo span{
+    color:#2f6cff;
+}
+
+.input-group{
+
+    margin-bottom:20px;
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#aab4dd;
+}
+
+.input-group input{
+
+    width:100%;
+
+    height:58px;
+
+    background:#050814;
+
+    border:1px solid #1f2847;
+
+    border-radius:16px;
+
+    padding:0 18px;
+
+    color:white;
+
+    outline:none;
+}
+
+.login-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(145deg,#2f6cff,#4f86ff);
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* ADMIN PANEL */
+
+.admin-panel{
+    display:none;
+}
+
+/* SIDEBAR */
+
+.wrapper{
+    display:flex;
+}
+
+.sidebar{
+
+    width:280px;
+
+    background:#0b1020;
+
+    border-right:1px solid rgba(255,255,255,0.05);
+
+    padding:25px;
+
+    position:fixed;
+
+    height:100vh;
+}
+
+.menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:40px;
+}
+
+.menu button{
+
+    border:none;
+
+    background:#111728;
+
+    color:#b7c3f5;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    text-align:left;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.menu button:hover,
+.menu button.active{
+
+    background:#2f6cff;
+
+    color:white;
+}
+
+/* MAIN */
+
+.main{
+
+    margin-left:280px;
+
+    width:100%;
+
+    padding:25px;
+}
+
+/* TOPBAR */
+
+.topbar{
+
+    background:#0d1323;
+
+    padding:25px;
+
+    border-radius:24px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.logout{
+
+    background:#ff3d3d;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 20px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+/* SECTION */
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+/* PANEL */
+
+.panel{
+
+    background:#0d1323;
+
+    border-radius:24px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+}
+
+/* FORM */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+}
+
+.form-grid input{
+
+    width:100%;
+
+    height:58px;
+
+    background:#050814;
+
+    border:1px solid #1f2847;
+
+    border-radius:16px;
+
+    padding:0 18px;
+
+    color:white;
+
+    outline:none;
+}
+
+.save-btn{
+
+    margin-top:20px;
+
+    border:none;
+
+    background:#2f6cff;
+
+    color:white;
+
+    padding:16px 24px;
+
+    border-radius:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* USERS */
+
+.user{
+
+    background:#111728;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    margin-bottom:18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.user-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.small-btn{
+
+    border:none;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+.ban{
+    background:#ff3d3d;
+}
+
+.unban{
+    background:#20bf55;
+}
+
+.edit{
+    background:#2f6cff;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .wrapper{
+        flex-direction:column;
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div
+    class="login-page"
+    id="loginPage"
+>
+
+    <div class="login-box">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ⚡
+            </div>
+
+            <h1>
+                AVI <span>ADMIN</span>
+            </h1>
+                        <p>
+                Secure Hosting Management Panel
+            </p>
+
+        </div>
+
+        <form onsubmit="adminLogin(event)">
+
+            <div class="input-group">
+
+                <label>
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter admin email"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+                    Admin Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter admin password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+
+                Login Admin Panel
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ADMIN PANEL -->
+
+<div
+    class="admin-panel"
+    id="adminPanel"
+>
+
+    <div class="wrapper">
+
+        <!-- SIDEBAR -->
+
+        <div class="sidebar">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    ⚡
+                </div>
+
+                <h1>
+                    AVI <span>ADMIN</span>
+                </h1>
+
+            </div>
+
+            <div class="menu">
+
+                <button
+                    class="active"
+                    onclick="showSection('dashboard',this)"
+                >
+
+                    📊 Dashboard
+
+                </button>
+
+                <button
+                    onclick="showSection('createServer',this)"
+                >
+
+                    ➕ Create Server
+
+                </button>
+
+                <button
+                    onclick="showSection('users',this)"
+                >
+
+                    👥 Users
+
+                </button>
+
+                <button
+                    onclick="showSection('maintenance',this)"
+                >
+
+                    🛠 Maintenance
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- MAIN -->
+
+        <div class="main">
+
+            <!-- TOPBAR -->
+
+            <div class="topbar">
+
+                <div>
+
+                    <h2>
+                        AVI HOSTING ADMIN
+                    </h2>
+
+                    <p>
+                        Full Server Management Panel
+                    </p>
+
+                </div>
+
+                <button
+                    class="logout"
+                    onclick="logoutAdmin()"
+                >
+
+                    Logout
+
+                </button>
+
+            </div>
+
+            <!-- DASHBOARD -->
+
+            <div
+                id="dashboard"
+                class="section active"
+            >
+
+                <div class="panel">
+
+                    <h2>
+                        📊 Server Statistics
+                    </h2>
+
+                    <br>
+
+                    <div class="user">
+
+                        <div>
+
+                            <h3>
+                                Total Users
+                            </h3>
+
+                            <p>
+                                12 Users
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="user">
+
+                        <div>
+
+                            <h3>
+                                Running Bots
+                            </h3>
+
+                            <p>
+                                8 Online
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="user">
+
+                        <div>
+
+                            <h3>
+                                Storage Usage
+                            </h3>
+
+                            <p>
+                                1.2GB / 5GB
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CREATE SERVER -->
+
+            <div
+                id="createServer"
+                class="section"
+            >
+
+                <div class="panel">
+
+                    <h2>
+                        ➕ Create New Server
+                    </h2>
+
+                    <br>
+
+                    <div class="form-grid">
+
+                        <input
+                            type="text"
+                            placeholder="Username"
+                        >
+
+                        <input
+                            type="password"
+                            placeholder="Password"
+                        >
+
+                        <input
+                            type="date"
+                        >
+
+                        <input
+                            type="text"
+                            placeholder="RAM Limit"
+                        >
+
+                    </div>
+
+                    <button
+                        class="save-btn"
+                        onclick="createServer()"
+                    >
+
+                        Create Server
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- USERS -->
+
+            <div
+                id="users"
+                class="section"
+            >
+
+                <div class="panel">
+
+                    <h2>
+                        👥 User Management
+                    </h2>
+
+                    <br>
+
+                    <!-- USER -->
+
+                    <div class="user">
+
+                        <div>
+
+                            <h3>
+                                user001
+                            </h3>
+
+                            <p>
+                                Expire: 2026-12-31
+                            </p>
+
+                        </div>
+
+                        <div class="user-buttons">
+
+                            <button
+                                class="small-btn ban"
+                                onclick="banUser()"
+                            >
+
+                                Ban
+
+                            </button>
+
+                            <button
+                                class="small-btn unban"
+                                onclick="unbanUser()"
+                            >
+
+                                Unban
+
+                            </button>
+
+                            <button
+                                class="small-btn edit"
+                                onclick="increaseTime()"
+                            >
+
+                                Increase Time
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- MAINTENANCE -->
+
+            <div
+                id="maintenance"
+                class="section"
+            >
+
+                <div class="panel">
+
+                    <h2>
+                        🛠 Maintenance Mode
+                    </h2>
+
+                    <br>
+
+                    <button
+                        class="save-btn"
+                        onclick="toggleMaintenance()"
+                    >
+
+                        ON / OFF Maintenance
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ADMIN LOGIN */
+
+function adminLogin(event){
+
+    event.preventDefault()
+
+    let email =
+    document.getElementById("adminEmail").value
+
+    let password =
+    document.getElementById("adminPassword").value
+
+    if(
+        email === "admin@avi.com"
+        &&
+        password === "aviadmin123"
+    ){
+
+        document.getElementById(
+            "loginPage"
+        ).style.display = "none"
+
+        document.getElementById(
+            "adminPanel"
+        ).style.display = "block"
+
+    }else{
+
+        alert(
+            "Invalid Admin Login"
+        )
+    }
+}
+
+/* SECTION */
+
+function showSection(id,element){
+
+    document.querySelectorAll(".section")
+    .forEach(sec=>{
+
+        sec.classList.remove("active")
+
+    })
+
+    document.getElementById(id)
+    .classList.add("active")
+
+    document.querySelectorAll(".menu button")
+    .forEach(btn=>{
+
+        btn.classList.remove("active")
+
+    })
+
+    element.classList.add("active")
+}
+
+/* LOGOUT */
+
+function logoutAdmin(){
+
+    location.reload()
+}
+
+/* FUNCTIONS */
+
+function createServer(){
+
+    alert(
+        "Server Created Successfully"
+    )
+}
+
+function banUser(){
+
+    alert(
+        "User Banned"
+    )
+}
+
+function unbanUser(){
+
+    alert(
+        "User Unbanned"
+    )
+}
+
+function increaseTime(){
+
+    alert(
+        "Expire Time Increased"
+    )
+}
+
+function toggleMaintenance(){
+
+    alert(
+        "Maintenance Mode Changed"
+    )
+}
+
+</script>
+
+</body>
+</html>
