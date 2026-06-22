@@ -1,4 +1,0 @@
-flask
-gunicorn
-py7zr
-werkzeug
